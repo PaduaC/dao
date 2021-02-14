@@ -41,6 +41,10 @@ contract DAO {
         admin = msg.sender;
     }
 
+    function getProposalId(uint256 id) external view returns (uint256) {
+        return proposals[id].id;
+    }
+
     function contribute() external payable {
         require(
             now < contributionEnd,
