@@ -64,7 +64,7 @@ function App() {
 
     for (let i = 0; i < nextProposalId; i++) {
       const [proposal, hasProposed] = await Promise.all([
-        contract.methods.getProposalId(i).call(),
+        contract.methods.proposals(i).call(),
         contract.methods.votes(accounts[0], i).call(),
       ]);
       proposals.push({ ...proposal, hasProposed });
@@ -274,6 +274,7 @@ function App() {
                   <td>{proposal.amount}</td>
                   <td>{proposal.recipient}</td>
                   <td>{proposal.votes}</td>
+
                   <td>
                     {isFinished(proposal) ? (
                       "Vote finished"
